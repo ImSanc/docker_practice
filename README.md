@@ -7,3 +7,7 @@
  docker run -d -p 3000:3000 mydock 
  (-p gives the port of the system you want to listen and connects with the 3000 port of the container )
  ( -d detaches the process from the terminal )
+
+-to push to docker hub
+docker push imsanc/practice_docker:tagname
+(this pushes it to docker hub and tagname should be of image you want to push)
