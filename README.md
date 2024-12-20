@@ -122,6 +122,11 @@ better solution is docker-compose
 - How to run docker compose ?
 docker-compose up
 
+- If docker compose file name is different?
+docker-compose -f <docker-compose.yml file name>
+
+-f is for the file name 
+
 - Force build compose 
 docker-compose up --build
 when you want to docker to build first , happened with me as it was not able to identify the changes i had to finally build the compose again for it to work

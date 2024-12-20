@@ -4,7 +4,6 @@ import { DB_URL } from "./key.js";
 
 mongoose.connect(DB_URL,{});
 
-
 const EntrySchema = new mongoose.Schema({
     text : String,
     date : {type : Date, default: Date.now}
@@ -15,8 +14,6 @@ const app = express();
 
 app.listen(3000, ()=>{
     console.log(`Example app listening to port 3000`);
-
-console.log(DB_URL);
 });
 
 app.get("/", async (request , response)=>{
