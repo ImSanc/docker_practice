@@ -112,3 +112,16 @@ as this image has been created even though we will do any changes in index.js it
 eg : docker run -p 3000:3000  --network network1 -v .:/usr/src/app mydock-dev
 
 -v .(attaches current file) : /usr/src/app (the files of the docker) i.e now it will hot swap when loaded in dev mode using nodemon
+
+
+# Docker compose
+
+if we have multiple auxilary dependency then do we start it in every terminal?
+better solution is docker-compose
+
+- How to run docker compose ?
+docker-compose up
+
+- Force build compose 
+docker-compose up --build
+when you want to docker to build first , happened with me as it was not able to identify the changes i had to finally build the compose again for it to work
