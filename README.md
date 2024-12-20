@@ -37,8 +37,6 @@ docker run -v volume_database:/data/db -p 27017:27017 mongo
 - docker volume ls
  (gives all the running volumes present on the system)
 
-- docker kill <container_id>
- kills the volume 
 
 - docker volume rm volume_database
 it removes the volume database    
