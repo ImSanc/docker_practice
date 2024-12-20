@@ -58,7 +58,7 @@
 
 # Environment Variables
  - how to give env variable in docker
- docker run -p 3000:3000 -e MONGO_URI = monogo <Image_name>
+ docker run -p 3000:3000 -e MONGO_URI=monogo <Image_name>
 
   - how to use env variable in js
   process.env.MONGO_URI
@@ -69,8 +69,37 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start" : "node index.js",
     "dev" : "nodemon index.js"
-  }, \`  
+  }, \` 
 
   here \``npm run start is\` equavalient to node index.js and similarly for \``npm run dev\` wil run it in nodemon
 
 - nodemon keeps eye on index.js and reloads the project if anything changes
+
+# MULTI STAGE BUILD
+
+ - suppose we have provide a build to client and one is dev (in dev we use nodemon which does hot reload)
+  in production we dont want hot reload there we want to run simple \\`npm run start`  that is when multi stage build comes in action : 
+
+  eg : 
+  
+    FROM node:20-alpine AS base
+    WORKDIR /usr/src/app
+    COPY package*.json ./
+    RUN npm install
+    EXPOSE 3000
+
+    FROM base AS dev //this is for the dev build
+    COPY . .
+    CMD ["npm", "run", "dev"]
+
+    FROM base AS prod // this is for the production build 
+    COPY . .
+    CMD ["npm", "run", "start"] `
+    
+both dev and prod build are taken from base image with separate dev and prod images.
+
+here we can now create build according to our needs :
+
+ - How to build dev image :
+ 
+docker build . --target < dev-image-name > -t <image-name>  
