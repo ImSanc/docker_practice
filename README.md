@@ -55,3 +55,22 @@
 
 # To attach containers to a network 
 - docker run -p 3000:3000 --network <network_name> --name <name_your_container> <container_to_run>
+
+# Environment Variables
+ - how to give env variable in docker
+ docker run -p 3000:3000 -e MONGO_URI = monogo <Image_name>
+
+  - how to use env variable in js
+  process.env.MONGO_URI
+
+# Adding scripts 
+ - we can add scripts in our package.json -> in scripts we can add example :
+ \`` "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node index.js",
+    "dev" : "nodemon index.js"
+  }, \`  
+
+  here \``npm run start is\` equavalient to node index.js and similarly for \``npm run dev\` wil run it in nodemon
+
+- nodemon keeps eye on index.js and reloads the project if anything changes
