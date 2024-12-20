@@ -35,9 +35,9 @@
 
 # to mount volume on the DB instance
  - docker run -v volume_database:/data/db -p 27017:27017 mongo
- - ( it runs the docker attaches the volume to the /data/db -- < -v volume_database:/data/db > 
- it attaches the port -p 27017:27017 system port to container mongo port
-)
+ - ( it runs the docker attaches/ mountes the volume to the /data/db -- < -v volume_database:/data/db > , i.e it means anything that changes in volume_database is moved to :/data/db and vice versa.
+ it attaches the port -p 27017:27017 system port to container mongo port, )
+
 # docker volume ls
  (gives all the running volumes present on the system)
 
@@ -103,3 +103,12 @@ here we can now create build according to our needs :
  - How to build dev image :
  
 docker build . --target < dev-image-name > -t <image-name>  
+
+- Catch 
+as this image has been created even though we will do any changes in index.js it won't reload in docker even in Dev mode.
+
+- for mounting the docker with code we have to attach them using VOLUME
+
+eg : docker run -p 3000:3000  --network network1 -v .:/usr/src/app mydock-dev
+
+-v .(attaches current file) : /usr/src/app (the files of the docker) i.e now it will hot swap when loaded in dev mode using nodemon

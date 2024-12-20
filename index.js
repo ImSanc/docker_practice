@@ -24,7 +24,7 @@ app.get("/", async (request , response)=>{
         response.send('Entry added!');
     }
     catch(err){
-        response.status(500).send("Error occurred");
+        response.status(500).send("Error occurred!!");
     }
 });
 
