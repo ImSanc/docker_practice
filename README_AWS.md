@@ -54,4 +54,4 @@ here there are 9 characters divided in 3 sets
  - Reverse Proxy
  A reverse proxy is placed in front of servers to intercept client requests and forward them to the appropriate server. It acts as an intermediary between the client and multiple backend servers.
 
- ![alt text](image-1.png)
+![alt text](image-2.png)
