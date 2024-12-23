@@ -68,7 +68,7 @@ go to the nginx config file : sudo vi /etc/nginx/nginx.conf
 
 - Enter this :
 
- \`` events {
+ \` events {
     # Event directives...
 }
 
@@ -98,3 +98,22 @@ sudo nginx -s reload
 npm i -g pm2 ( this is project manager i.e need to know more about it)
 
 - pm2 start index.js
+now it will run forever
+
+
+# Certificates
+- These are need if we want to use https
+
+for creating a certificate we will use "CERTBOT"
+
+- install certbot on cloud machine
+
+sudo snap install --classic certbot
+
+- this command will link the certbot to our machine i.e allows cerbot commands to run
+
+  sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+- to add the certificates to your nginx config automatically 
+
+sudo certbot --nginx
