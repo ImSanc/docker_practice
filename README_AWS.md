@@ -13,7 +13,7 @@ exit
  sudo vi /etc/resolv.conf
 
  click I to go in insert mode 
- add namespace 8.8.8.8
+ add "nameserver 8.8.8.8"
  :qw
  to save and quit 
  :w to save
@@ -55,3 +55,46 @@ here there are 9 characters divided in 3 sets
  A reverse proxy is placed in front of servers to intercept client requests and forward them to the appropriate server. It acts as an intermediary between the client and multiple backend servers.
 
 ![alt text](image-2.png)
+
+# for Reverse proxy
+
+- Go to your domain provider and add dns and map it to the domain
+
+- Now for testing reverse Proxy
+
+go to the nginx config file : sudo vi /etc/nginx/nginx.conf
+
+- Delete default config sudo rm /etc/nginx/nginx.conf
+
+- Enter this :
+
+ \`` events {
+    # Event directives...
+}
+
+http {
+	server {
+    listen 80;
+    server_name be1.100xdevs.com;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+	}
+}
+\`
+
+- Restart ngnix
+sudo nginx -s reload
+
+- if i want to keep running my node process after closing the connection
+
+- install project manager 
+npm i -g pm2 ( this is project manager i.e need to know more about it)
+
+- pm2 start index.js
